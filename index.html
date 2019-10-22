@@ -10,6 +10,11 @@
 <body>
     <div id="app">
         <div :style="errorMessageStyle">
+            <ul>
+                <li v-for="item in items" v-bind:key="item.name">
+                    {{ item.name }}: {{ item.price }} × {{ item.quantity }} = {{ item.price * item.quantity | numberWithDelimiter }}円
+                </li>
+            </ul>
             <p>
                 {{ items[0].name }}: {{ items[0].price }} × {{ items[0].quantity }}
             </p>
