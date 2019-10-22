@@ -18,7 +18,7 @@
         <p>
             合計（税込）: {{ totalPrice | numberWithDelimiter }}円
         </p>
-        <p v-bind:style="{border: (canBuy ? '' : '1px solid red'), color: (canBuy ? '' : 'red')}">
+        <p v-bind:style="errorMessageStyle">
             {{ 1000 | numberWithDelimiter }}円以上からご購入いただけます
         </p>
     </div>
