@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3.4.3 スロットコンテンツを生かしたヘッダーコンポーネントの作成</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10"></script>
+    <style type="text/css">
+    <!--
+        .header h1{
+            width: 100%;
+            height: 30px;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            padding: 30px 15px;
+        }
+
+        .content li {
+            width: 100%;
+            height: 30px;
+            padding: 30px 15px;
+            background-color: white;
+            border: 1px solid #d3d3d3;
+            text-align: left;
+        }
+    -->
+    </style>
+</head>
+<body>
+    <div id="fruits-list">
+        <page-header class="header">
+            <h1 slot="header">冬の果物</h1>
+        </page-header>
+        <page-content class="content">
+            <ul slot="content">
+                <li>りんご</li>
+                <li>イチゴ</li>
+            </ul>
+        </page-content>
+    </div>
+
+    <script>
+        var headerTemplate = `
+          <div>
+            <slot name="header">No title</slot>
+          </div>
+        `
+        var contentTemplate = `
+          <div>
+            <slot name="content">No contents</slot>
+          </div>
+        `
+
+        Vue.component('page-header', {
+            template: headerTemplate
+        })
+
+        Vue.component('page-content', {
+            template: contentTemplate
+        })
+
+        new Vue({
+            el: "#fruits-list"
+        })
+    </script>
+</body>
+</html>
