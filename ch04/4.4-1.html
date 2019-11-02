@@ -20,10 +20,34 @@
     <!-- 必要な文のコンポーネントのテンプレート定義 -->
     <script type="text/x-template" id="user-list">
         <!-- コンポーネントで使用するテンプレートHTMLを記載。コンポーネントごとに繰り返しscriptタグで定義 -->
+        <div>ユーザー一覧ページです。</div>
     </script>
 
     <!-- 任意のJS実装 -->
     <script>
+        var UserList = {
+            // HTML上のscriptタグのidを指定する
+            template: '#user-list',
+        }
+
+        var router = new VueRouter({
+            routes: [
+                {
+                    path: '/top',
+                    component: {
+                        template: '<div>トップページです。</div>'
+                    }
+                },
+                {
+                    path: '/users',
+                    component: UserList
+                }
+            ]
+        })
+
+        var app = new Vue({
+            router: router
+        }).$mount('#app')
     </script>
 </body>
 </html>
