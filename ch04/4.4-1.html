@@ -19,15 +19,72 @@
     </div>
     <!-- 必要な文のコンポーネントのテンプレート定義 -->
     <script type="text/x-template" id="user-list">
-        <!-- コンポーネントで使用するテンプレートHTMLを記載。コンポーネントごとに繰り返しscriptタグで定義 -->
-        <div>ユーザー一覧ページです。</div>
+        <div>
+            <div class="loading" v-if="loading">読込中...</div>
+            <div class="error" v-if="error">{{error}}</div>
+            <!-- usersがロードされたら各ユーザーの名前を表示する -->
+            <div v-for="user in users" :key="user.id">
+                <h2>{{user.name}}</h2>
+            </div>
+        </div>
     </script>
 
     <!-- 任意のJS実装 -->
     <script>
+        // JSONを返す関数。この関数を使って擬似的にWeb API経由で情報を取得したようにする
+        var getUsers = function (callback) {
+            setTimeout(function () {
+                callback(null, [
+                    {
+                        id: 1,
+                        name: 'Takuya Tejima'
+                    },
+                    {
+                        id: 2,
+                        name: 'Yohei Noda'
+                    }
+                ])
+            }, 1000)
+        }
         var UserList = {
             // HTML上のscriptタグのidを指定する
             template: '#user-list',
+            data: function () {
+                return {
+                    loading: false,
+                    users: function () {
+                        // 初期値は空配列
+                        return []
+                    },
+                    error: null
+                }
+            },
+            // 初期化時にデータを取得する。see. https://jp.vuejs.org/v2/api/#created
+            created: function () {
+                this.fetchData()
+            },
+            // watchはキーに監視する評価式、値が対応するコールバックをもつオブジェクト。
+            // see. https://jp.vuejs.org/v2/api/#watch
+            watch: {
+                // ルーティングが変更されたときに再度データを取得
+                '$route': 'fetchData'
+            },
+            methods: {
+                fetchData: function () {
+                    this.loading = true
+                    // 取得したデータの結果をusersに格納する
+                    // Function.prototype.bindはthisにスコープを渡すために利用
+                    // see. https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
+                    getUsers((function (err, users) {
+                        this.loading = false
+                        if (err) {
+                            this.error = err.toString()
+                        } else {
+                            this.users = users
+                        }
+                    }).bind(this))
+                }
+            }
         }
 
         var router = new VueRouter({
