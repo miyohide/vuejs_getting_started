@@ -17,33 +17,57 @@
         </nav>
         <router-view></router-view>
     </div>
-    <!-- 必要な文のコンポーネントのテンプレート定義 -->
+    <!-- 必要な分のコンポーネントのテンプレート定義 -->
     <script type="text/x-template" id="user-list">
         <div>
             <div class="loading" v-if="loading">読込中...</div>
             <div class="error" v-if="error">{{error}}</div>
             <!-- usersがロードされたら各ユーザーの名前を表示する -->
             <div v-for="user in users" :key="user.id">
+                <h2>
+                    <router-link :to="{ path: '/users/' + user.id }">{{user.name}}</router-link>
+                </h2>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="user-detail">
+        <div>
+            <div class="loading" v-if="loading">読込中...</div>
+            <div class="error" v-if="error">{{error}}</div>
+            <div v-if="user">
                 <h2>{{user.name}}</h2>
+                <p>{{user.description}}</p>
             </div>
         </div>
     </script>
 
     <!-- 任意のJS実装 -->
     <script>
+        var userData = [
+            {
+                id: 1,
+                name: 'Takuya Tejima',
+                description: '東南アジアで働くエンジニアです。'
+            },
+            {
+                id: 2,
+                name: 'Yohei Noda',
+                description: 'アウトドア・フットサルが趣味のエンジニアです。'
+            }
+        ]
         // JSONを返す関数。この関数を使って擬似的にWeb API経由で情報を取得したようにする
         var getUsers = function (callback) {
             setTimeout(function () {
-                callback(null, [
-                    {
-                        id: 1,
-                        name: 'Takuya Tejima'
-                    },
-                    {
-                        id: 2,
-                        name: 'Yohei Noda'
-                    }
-                ])
+                callback(null, userData)
+            }, 1000)
+        }
+        var getUser = function (userId, callback) {
+            setTimeout(function () {
+                var filteredUsers = userData.filter(function (user) {
+                    return user.id === parseInt(userId, 10)
+                })
+                callback(null, filteredUsers && filteredUsers[0])
             }, 1000)
         }
         var UserList = {
@@ -86,6 +110,39 @@
                 }
             }
         }
+        var UserDetail = {
+            template: '#user-detail',
+            // 初期値のセット
+            data: function () {
+                return {
+                    loading: false,
+                    user: null,
+                    error: null
+                }
+            },
+
+            created: function () {
+                this.fetchData()
+            },
+
+            watch: {
+                '$route': 'fetchData'
+            },
+
+            methods: {
+                fetchData: function () {
+                    this.loading = true
+                    getUser(this.$route.params.userId, (function (err, user) {
+                        this.loading = false
+                        if (err) {
+                            this.error = error.toString()
+                        } else {
+                            this.user = user
+                        }
+                    }).bind(this))
+                }
+            }
+        }
 
         var router = new VueRouter({
             routes: [
@@ -98,6 +155,10 @@
                 {
                     path: '/users',
                     component: UserList
+                },
+                {
+                    path: '/users/:userId',
+                    component: UserDetail
                 }
             ]
         })
