@@ -12,7 +12,7 @@
         <todo-list :todos="todos">
             <!-- ES2015の分割代入の仕様を活用して、slotPropsへアクセスすることを不要にしている -->
             <!-- see. https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment -->
-            <li slot-scope="{ todo }" v-if="todo.isComplated">
+            <li slot-scope="{ todo }" v-if="todo.isCompleted">
                 {{ todo.text }}
             </li>
         </todo-list>
