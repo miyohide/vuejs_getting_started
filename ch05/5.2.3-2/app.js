@@ -8,6 +8,7 @@ var TodoList = {
     template: `
     <ul>
       <template v-for="todo in todos">
+        <!-- v-bindディレクティブでtodoを親コンポーネントに渡す -->
         <slot :todo="todo">
           <li :key="todo.id">
             {{ todo.text }}

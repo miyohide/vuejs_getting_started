@@ -10,9 +10,10 @@
 <body>
     <div id="app">
         <todo-list :todos="todos">
-            <!-- ES2015の分割代入の仕様を活用して、slotPropsへアクセスすることを不要にしている -->
-            <!-- see. https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment -->
-            <li slot-scope="{ todo }" v-if="todo.isCompleted">
+            <!-- v2.6から仕様が変わったみたいでサンプル通りには動かなくなったみたい。
+                see. https://gihyo.jp/book/2018/978-4-297-10091-9/support
+             -->
+            <li slot-scope="{ todo }" v-show="todo.isCompleted" :key="todo.id">
                 {{ todo.text }}
             </li>
         </todo-list>
