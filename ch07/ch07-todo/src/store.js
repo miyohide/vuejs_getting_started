@@ -17,8 +17,30 @@ export default new Vuex.Store({
         done: true
       }
     ],
+    // 次に追加するタスクのID。実際にアプリではサーバーなどで生成する必要あり。
+    nextTaskId: 3,
   },
   mutations: {
+    // タスクを追加する
+    addTask (state, { name }) {
+      state.tasks.push({
+        id: state.nextTaskId,
+        name,
+        done: false
+      })
+      // 次に追加するタスクのIDを更新する
+      state.nextTaskId++
+    },
+    // タスクの完了状態を変更する
+    toggleTaskStatus (state, { id }) {
+      const filtered = state.tasks.filter(task => {
+        return task.id === id
+      })
+
+      filtered.forEach(task => {
+        task.done = !task.done
+      })
+    },
 
   },
   actions: {
