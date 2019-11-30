@@ -10,12 +10,14 @@
 <body>
     <div id="fruits-counter">
         <div v-for="fruit in fruits">
+            <!-- 子コンポーネントでincrementカスタムイベントが発火されるとincrementCartStatusが実行される -->
             {{fruit.name}}: <counter-button v-on:increment="incrementCartStatus()"></counter-button>
         </div>
         <p>合計:{{total}}</p>
     </div>
 
     <script>
+        // 子コンポーネント counterButton の定義
         var counterButton = Vue.extend({
             template: '<span>{{counter}}個<button v-on:click="addToCart">追加</button></span>',
             data: function () {
@@ -24,13 +26,17 @@
                 }
             },
             methods: {
+                /* 上記のtemplateで指定されている<button>タグで指定されているv-on:clickにより
+                    ボタンをクリックするとaddToCartメソッドが呼ばれる
+                    */
                 addToCart: function () {
                     this.counter += 1
-                    // counter-buttonにつけてあるincrementカスタムイベントの発火
+                    // <counter-button>につけてあるincrementカスタムイベントの発火
                     this.$emit('increment')
                 }
             },
         })
+        // 親コンポーネント
         new Vue({
             el: '#fruits-counter',
             components: {
