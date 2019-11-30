@@ -18,7 +18,7 @@
     <script>
         Vue.component('fruits-item-name', {
             props: {
-                // テンプレートの中ではケバブケースで指定
+                // v-bindの属性名（fruits-item）に対応する名前としてpropsではfruitsItemを指定する
                 fruitsItem: {
                     type: Object,
                     required: true
