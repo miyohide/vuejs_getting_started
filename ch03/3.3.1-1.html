@@ -9,7 +9,10 @@
 </head>
 <body>
     <div id="app">
-        <!-- v-bind:属性名を使って子コンポーネントにデータを渡す -->
+        <!-- v-bind:属性名を使って子コンポーネントにデータを渡す。
+            ここでの属性名（item-name）はcomponentのpropsの名前（iteemName）に
+            対応する。
+         -->
         <item-desc v-bind:item-name='myItem'></item-desc>
     </div>
     <script>
