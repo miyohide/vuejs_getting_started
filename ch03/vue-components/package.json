@@ -2,5 +2,8 @@
   "name": "vue-components",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^6.2.2"
+  }
 }
