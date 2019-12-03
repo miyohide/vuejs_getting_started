@@ -1,7 +1,8 @@
 <template>
     <div class="bar">
         <h1 class="header">Barコンポーネント</h1>
-        <foo />
+        <p>これはBarコンポーネントです</p>
+        <foo class="header" />
     </div>
 </template>
 
