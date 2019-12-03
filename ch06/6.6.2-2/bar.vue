@@ -2,6 +2,8 @@
     <div class="bar">
         <h1 class="header">Barコンポーネント</h1>
         <p>これはBarコンポーネントです</p>
+        <!-- ここでheaderクラスをつけることで、下で定義しているheader+Fooコンポーネントのheaderクラス
+        の2つがかかってしまう。 -->
         <foo class="header" />
     </div>
 </template>
