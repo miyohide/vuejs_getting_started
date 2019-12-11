@@ -7,8 +7,8 @@ import mutations from './mutations'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    getters,
-    actions,
-    mutations,
-    strict: process.env.NODE_ENV !== 'production'
+  getters,
+  actions,
+  mutations,
+  strict: process.env.NODE_ENV !== 'production'
 })
