@@ -22,6 +22,6 @@ jobs:
         cd ch08-10/kanban-app
         yarn install --frozen-lockfile
         yarn run build --if-present
-        yarn test
+        yarn run unit
       env:
         CI: true
