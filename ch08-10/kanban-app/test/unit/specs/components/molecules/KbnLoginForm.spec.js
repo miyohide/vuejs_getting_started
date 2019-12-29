@@ -73,25 +73,25 @@ describe('KbnLoginForm', () => {
         })
         loginForm.vm.$nextTick(done)
       })
-    })
 
-    describe('バリデーション項目すべてOK', () => {
-      it('validになること', () => {
-        loginForm.setData({
-          email: 'foo@domain.com',
-          password: '12345678'
+      describe('バリデーション項目すべてOK', () => {
+        it('validになること', () => {
+          loginForm.setData({
+            email: 'foo@domain.com',
+            password: '12345678'
+          })
+          expect(loginForm.vm.valid).to.equal(true)
         })
-        expect(loginForm.vm.valid).to.equal(true)
       })
-    })
 
-    describe('バリデーションNG項目あり', () => {
-      it('invalidになること', () => {
-        loginForm.setData({
-          email: 'foo@domain.com',
-          password: ''
+      describe('バリデーションNG項目あり', () => {
+        it('invalidになること', () => {
+          loginForm.setData({
+            email: 'foo@domain.com',
+            password: ''
+          })
+          expect(loginForm.vm.valid).to.equal(false)
         })
-        expect(loginForm.vm.valid).to.equal(false)
       })
     })
 
