@@ -8,7 +8,8 @@
         type="text"
         autocomplete="off"
         placeholder="例： kanban@domain.com"
-        @focus="resetError">
+        @focus="resetError"
+      >
       <ul class="validation-errors">
         <li v-if="!validation.email.format">メールアドレスの形式が不正です。</li>
         <li v-if="!validation.email.required">メールアドレスが入力されていません</li>
@@ -22,7 +23,8 @@
         type="password"
         autocomplete="off"
         placeholder="例：xxxxxxxx"
-        @focus="resetError">
+        @focus="resetError"
+      >
       <ul class="validation-errors">
         <li v-if="!validation.password.required">パスワードが入力されていません</li>
       </ul>
