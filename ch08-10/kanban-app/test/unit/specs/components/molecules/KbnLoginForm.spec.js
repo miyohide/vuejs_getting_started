@@ -158,7 +158,7 @@ describe('KbnLoginForm', () => {
           loginForm.find('button').trigger('click')
           expect(onloginStub.called).to.equal(false)
           expect(loginForm.vm.error).to.equal('')
-          expect(loginForrm.vm.disableLoginAction).to.equal(true)
+          expect(loginForm.vm.disableLoginAction).to.equal(true)
 
           loginForm.vm.$nextTick(() => {
             expect(onloginStub.called).to.equal(true)
