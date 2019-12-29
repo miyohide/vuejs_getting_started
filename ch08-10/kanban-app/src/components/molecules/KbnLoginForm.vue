@@ -11,8 +11,12 @@
         @focus="resetError"
       >
       <ul class="validation-errors">
-        <li v-if="!validation.email.format">メールアドレスの形式が不正です。</li>
-        <li v-if="!validation.email.required">メールアドレスが入力されていません</li>
+        <li v-if="!validation.email.format">
+          メールアドレスの形式が不正です。
+        </li>
+        <li v-if="!validation.email.required">
+          メールアドレスが入力されていません
+        </li>
       </ul>
     </div>
     <div class="form-item">
@@ -26,7 +30,9 @@
         @focus="resetError"
       >
       <ul class="validation-errors">
-        <li v-if="!validation.password.required">パスワードが入力されていません</li>
+        <li v-if="!validation.password.required">
+          パスワードが入力されていません
+        </li>
       </ul>
     </div>
     <div class="form-actions">
