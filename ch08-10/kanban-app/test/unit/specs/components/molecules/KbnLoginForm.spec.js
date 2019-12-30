@@ -169,7 +169,7 @@ describe('KbnLoginForm', () => {
               expect(loginForm.vm.error).to.equal('')
               expect(loginForm.vm.disableLoginAction).to.equal(false)
 
-              done
+              done()
             })
           })
         })
