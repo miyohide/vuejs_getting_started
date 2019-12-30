@@ -1,6 +1,6 @@
 <template>
   <form novalidate>
-    <div class="formitem">
+    <div class="form-item">
       <label for="email">メールアドレス</label>
       <input
         id="email"
