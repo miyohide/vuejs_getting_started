@@ -26,7 +26,7 @@ export default {
 
   computed: {
     classes () {
-      const cls = this.type === 'text' ? '-' + this.type : ''
+      const cls = this.type === 'text' ? ('-' + this.type) : ''
       return [`kbn-button${cls}`]
     }
   },
