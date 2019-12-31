@@ -7,13 +7,13 @@ const mockLoginAction = login => {
   const actionsInjector = require('inject-loader!@/store/actions')
 
   // 注入関数でAuth APIモジュールをモック化する
-  const actionsMOcks = actionsInjector({
+  const actionsMocks = actionsInjector({
     '../api': {
       Auth: { login }
     }
   })
 
-  return actionsMOcks.default.login
+  return actionsMocks.default.login
 }
 
 describe('loginアクション', () => {
