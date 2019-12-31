@@ -22,7 +22,7 @@ describe('KbnLoginForm', () => {
           })
 
           describe('入力あり', () => {
-            it('validation.email.requireddがvalidであること', () => {
+            it('validation.email.requiredがvalidであること', () => {
               loginForm.setData({ email: 'foo@domain.com' })
               expect(loginForm.vm.validation.email.required).to.equal(true)
             })
