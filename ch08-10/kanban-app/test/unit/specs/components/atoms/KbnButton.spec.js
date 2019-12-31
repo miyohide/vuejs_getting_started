@@ -2,9 +2,9 @@ import { mount } from '@vue/test-utils'
 import KbnButton from '@/components/atoms/KbnButton.vue'
 
 describe('KbnButton', () => {
-  describe(' プロパティ', () => {
+  describe('プロパティ', () => {
     describe('type', () => {
-      describe(' デフォルト', () => {
+      describe('デフォルト', () => {
         it('kbn-buttonクラスを持つbutton要素で構成されること', () => {
           const button = mount(KbnButton)
           expect(button.is('button')).to.equal(true)
@@ -34,7 +34,7 @@ describe('KbnButton', () => {
     })
 
     describe('disabled', () => {
-      describe(' デフォルト', () => {
+      describe('デフォルト', () => {
         it('disabled属性が付与されていないこと', () => {
           const button = mount(KbnButton, {
             propsData: { disabled: false }
@@ -72,8 +72,8 @@ describe('イベント', () => {
   })
 })
 
-describe(' スロット', () => {
-  describe(' コンテンツ挿入あり', () => {
+describe('スロット', () => {
+  describe('コンテンツ挿入あり', () => {
     it('挿入されていること', () => {
       const button = mount(KbnButton, {
         slots: { default: '<p>hello</p>' }
