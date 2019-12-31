@@ -125,7 +125,7 @@ describe('KbnLoginForm', () => {
       })
 
       describe('バリデーション項目全てOKかつログイン処理中', () => {
-        it('ログイン処理は有効', () => {
+        it('ログイン処理は無効', () => {
           loginForm.setData({
             email: 'foo@domain.com',
             password: '12345678',
