@@ -56,7 +56,7 @@ describe('loginアクション', () => {
       Vue.nextTick(done)
     })
 
-    it ('失敗となること', done => {
+    it('失敗となること', done => {
       // commitが呼ばれていないかチェック
       expect(commit.called).to.equal(false)
 
