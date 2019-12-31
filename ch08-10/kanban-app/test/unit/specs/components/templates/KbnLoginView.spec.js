@@ -88,7 +88,7 @@ describe('KbnLoginView', () => {
         triggerLogin(loginView, LoginFormComponentStub)
 
         loginView.vm.$nextTick(() => {
-          const callInfo = loginView.vm.throwRejct
+          const callInfo = loginView.vm.throwReject
           expect(callInfo.called).to.equal(true)
           expect(callInfo.args[0][0].message).to.equal(message)
           done()
