@@ -30,7 +30,7 @@ const mockAuthorizeToken = store => {
 // Vueアプリケーションをセットアップするヘルパー関数
 const setup = state => {
   // Vuexストアの設定
-  const store = new Vuex.store({ state })
+  const store = new Vuex.Store({ state })
   // Vue Routerの設定
   const router = new VueRouter({
     routes: [{
@@ -47,7 +47,7 @@ const setup = state => {
   router.beforeEach(mockAuthorizeToken(store))
 
   // Appでマウントしてラッパーを返す
-  return MouseEvent(App, {
+  return mount(App, {
     localVue,
     store,
     router
