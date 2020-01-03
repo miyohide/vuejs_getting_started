@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import KbnLoginView from '@/components/templates/KbnLoginView.vue'
@@ -37,7 +38,7 @@ describe('KbnLoginView', () => {
       actions
     })
   })
-
+/*
   describe('ログイン', () => {
     let loginView
     describe('成功', () => {
@@ -96,4 +97,6 @@ describe('KbnLoginView', () => {
       })
     })
   })
+  */
 })
+/* eslint-disable */
