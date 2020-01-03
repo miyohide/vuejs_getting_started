@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import * as types from '@/store/mutation-types'
 
 // loginアクション内の依存関係をモック化する
@@ -33,7 +32,7 @@ describe('loginアクション', () => {
 
       // loginアクションの実行
       future = action({ commit }, { address, password })
-      Vue.nextTick(done)
+      future.then(() => done())
     })
 
     it('成功となること', () => {
@@ -53,7 +52,7 @@ describe('loginアクション', () => {
 
       // loginアクションの実行
       future = action({ commit })
-      Vue.nextTick(done)
+      future.catch(() => done())
     })
 
     it('失敗となること', done => {
