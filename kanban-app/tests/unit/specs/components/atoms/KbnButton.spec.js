@@ -32,5 +32,32 @@ describe('KbnButton', () => {
         })
       })
     })
+
+    describe('disabled', () => {
+      describe('デフォルト', () => {
+        it('disabled属性が付与されていないこと', () => {
+          const button = shallowMount(KbnButton)
+          expect(button.attributes().disabled).toBeUndefined()
+        })
+      })
+
+      describe('true', () => {
+        it('disabled属性が付与されていること', () => {
+          const button = shallowMount(KbnButton, {
+            propsData: { disabled: true }
+          })
+          expect(button.attributes().disabled).toBe('disabled')
+        })
+      })
+
+      describe('false', () => {
+        it('disabled属性が付与されていること', () => {
+          const button = shallowMount(KbnButton, {
+            propsData: { disabled: false }
+          })
+          expect(button.attributes().disabled).toBeUndefined()
+        })
+      })
+    })
   })
 })
