@@ -60,4 +60,14 @@ describe('KbnButton', () => {
       })
     })
   })
+
+  describe('イベント', () => {
+    describe('click', () => {
+      it('発行されていること', () => {
+        const button = shallowMount(KbnButton)
+        button.trigger('click')
+        expect(button.emitted().click.length).toEqual(1)
+      })
+    })
+  })
 })
