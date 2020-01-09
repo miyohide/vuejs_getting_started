@@ -11,6 +11,16 @@ describe('KbnButton', () => {
           expect(button.classes()).toContain('kbn-button')
         })
       })
+
+      describe('button', () => {
+        it('kbn-buttonクラスを持つbutton要素で構成されること', () => {
+          const button = shallowMount(KbnButton, {
+            propsData: { type: 'button' }
+          })
+          expect(button.is('button')).toBe(true)
+          expect(button.classes()).toContain('kbn-button')
+        })
+      })
     })
   })
 })
