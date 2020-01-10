@@ -2,6 +2,7 @@
   <button
     :class="classes"
     type="button"
+    @click="handleClick"
   >
   </button>
 </template>
@@ -22,6 +23,12 @@ export default {
     classes () {
       const cls = this.type === 'text' ? ('-' + this.type) : ''
       return [`kbn-button${cls}`]
+    }
+  },
+
+  methods: {
+    handleClick (ev) {
+      this.$emit('click', ev)
     }
   }
 }
