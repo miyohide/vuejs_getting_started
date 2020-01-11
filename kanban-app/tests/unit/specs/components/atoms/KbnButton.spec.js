@@ -70,4 +70,15 @@ describe('KbnButton', () => {
       })
     })
   })
+
+  describe('スロット', () => {
+    describe('コンテンツ挿入あり', () => {
+      it('挿入されていること', () => {
+        const button = shallowMount(KbnButton, {
+          slots: { default: '<p>hello</p>' }
+        })
+        expect(button.text()).toEqual('hello')
+      })
+    })
+  })
 })
