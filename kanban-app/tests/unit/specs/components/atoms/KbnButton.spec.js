@@ -80,5 +80,12 @@ describe('KbnButton', () => {
         expect(button.text()).toEqual('hello')
       })
     })
+
+    describe('コンテンツ挿入なし', () => {
+      it('挿入されていないこと', () => {
+        const button = shallowMount(KbnButton)
+        expect(button.text()).toEqual('')
+      })
+    })
   })
 })
