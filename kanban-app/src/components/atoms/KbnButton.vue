@@ -4,6 +4,7 @@
     type="button"
     @click="handleClick"
   >
+    <slot />
   </button>
 </template>
 
