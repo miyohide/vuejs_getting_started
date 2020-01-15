@@ -28,6 +28,15 @@ describe('KbnLoginForm', () => {
             })
           })
         })
+
+        describe('format', () => {
+          describe('メール形式でないフォーマット', () => {
+            it('validation.email.formatがinvalidであること', () => {
+              loginForm.setData({ email: 'foobar' })
+              expect(loginForm.vm.validation.email.format).toEqual(false)
+            })
+          })
+        })
       })
     })
   })
