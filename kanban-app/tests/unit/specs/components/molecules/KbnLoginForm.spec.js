@@ -45,6 +45,24 @@ describe('KbnLoginForm', () => {
           })
         })
       })
+
+      describe('password', () => {
+        describe('required', () => {
+          describe('何も入力されていない', () => {
+            it('validation.password.requiredがinvalidであること', () => {
+              loginForm.setData({ password: '' })
+              expect(loginForm.vm.validation.password.required).toEqual(false)
+            })
+          })
+
+          describe('入力あり', () => {
+            it('validation.email.requiredがvalidであること', () => {
+              loginForm.setData({ password: 'hogehoge' })
+              expect(loginForm.vm.validation.password.required).toEqual(true)
+            })
+          })
+        })
+      })
     })
   })
 })
