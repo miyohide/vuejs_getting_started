@@ -42,6 +42,7 @@ export default {
   data () {
     return {
       email: '',
+      password: '',
     }
   },
 
@@ -52,6 +53,9 @@ export default {
           required: required(this.email),
           format: REGEX_EMAIL.test(this.email)
         },
+        password: {
+          required: required(this.password)
+        }
       }
     },
   },
