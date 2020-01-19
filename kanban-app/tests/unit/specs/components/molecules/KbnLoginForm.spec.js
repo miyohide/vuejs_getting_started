@@ -63,6 +63,26 @@ describe('KbnLoginForm', () => {
           })
         })
       })
+
+      describe('valid', () => {
+        let loginForm
+        beforeEach(done => {
+          loginForm = shallowMount(KbnLoginForm, {
+            propsData: { onlogin: () => {} }
+          })
+          loginForm.vm.$nextTick(done)
+        })
+
+        describe('バリデーション項目全てOK', () => {
+          it('validになること', () => {
+            loginForm.setData({
+              email: 'foo@example.com',
+              password: '12345678'
+            })
+            expect(loginForm.vm.valid).toEqual(true)
+          })
+        })
+      })
     })
   })
 })
