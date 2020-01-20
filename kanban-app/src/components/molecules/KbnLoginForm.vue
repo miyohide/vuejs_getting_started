@@ -58,6 +58,24 @@ export default {
         }
       }
     },
+
+    valid () {
+      // 上記で定義した`validation`を使用する
+      const validation = this.validation
+      // 上記で定義した`validation`の戻り値のkeyをfieldsに代入。ここでは
+      // `email`と`password`
+      const fields = Object.keys(validation)
+      let valid = true
+      for (let i = 0; i < fields.length; i++) {
+        const field = fields[i];
+        // `every`の説明 https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/every
+        valid = Object.keys(validation[field]).every(key => validation[field][key])
+        if (!valid) {
+          break
+        }
+      }
+      return valid
+    },
   },
 }
 </script>
