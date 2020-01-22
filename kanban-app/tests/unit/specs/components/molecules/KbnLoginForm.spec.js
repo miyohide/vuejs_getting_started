@@ -107,7 +107,7 @@ describe('KbnLoginForm', () => {
           it('ログイン処理は無効', () => {
             loginForm.setData({
               email: 'foo@domain.com',
-              password: '('
+              password: ''
             })
             expect(loginForm.vm.disableLoginAction).toEqual(true)
           })
