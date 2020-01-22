@@ -93,6 +93,26 @@ describe('KbnLoginForm', () => {
           })
         })
       })
+
+      describe('disableLoginAction', () => {
+        let loginForm
+        beforeEach(done => {
+          loginForm = shallowMount(KbnLoginForm, {
+            propsData: { onlogin: () => {} }
+          })
+          loginForm.vm.$nextTick(done)
+        })
+
+        describe('バリデーションNG項目あり', () => {
+          it('ログイン処理は無効', () => {
+            loginForm.setData({
+              email: 'foo@domain.com',
+              password: '('
+            })
+            expect(loginForm.vm.disableLoginAction).toEqual(true)
+          })
+        })
+      })
     })
   })
 })
