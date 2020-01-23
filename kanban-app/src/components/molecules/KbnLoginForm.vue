@@ -76,6 +76,10 @@ export default {
       }
       return valid
     },
+
+    disableLoginAction() {
+      return true
+    }
   },
 }
 </script>
