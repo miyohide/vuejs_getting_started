@@ -111,6 +111,17 @@ describe('KbnLoginForm', () => {
             })
             expect(loginForm.vm.disableLoginAction).toEqual(true)
           })
+        }),
+
+        describe('バリデーションOKで、ログイン処理中ではない', () => {
+          it('ログイン処理は有効', () => {
+            loginForm.setData({
+              email: 'foo@domain.com',
+              password: '12345678',
+              progress: false
+            })
+            expect(loginForm.vm.disableLoginAction).toEqual(false)
+          })
         })
       })
     })
