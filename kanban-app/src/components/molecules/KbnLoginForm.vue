@@ -43,6 +43,7 @@ export default {
     return {
       email: '',
       password: '',
+      progress: false,
     }
   },
 
@@ -78,7 +79,7 @@ export default {
     },
 
     disableLoginAction() {
-      return true
+      return !this.valid || this.progress
     }
   },
 }
