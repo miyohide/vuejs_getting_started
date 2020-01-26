@@ -135,6 +135,47 @@ describe('KbnLoginForm', () => {
           })
         })
       })
+
+      describe('onlogin', () => {
+        let loginForm
+        let onloginStub
+        beforeEach(done => {
+          onloginStub = sinon.stub()
+          loginForm = shallowMount(KbnLoginForm, {
+            propsData: { onlogin: onloginStub }
+          })
+          loginForm.setData({
+            email: 'foo@domain.com',
+            password: '12345678'
+          })
+          loginForm.vm.$nextTick(done)
+        })
+
+        describe('resolve', () => {
+          it('resolveされること', done => {
+            onloginStub.resolves()
+
+            loginForm.find('button').trigger('click')
+            expect(onloginStub.called).toEqual(false) // まだresolveされない
+            expect(loginForm.vm.error).toEqual('') // エラーメッセージは初期化
+            expect(loginForm.vm.disableLoginAction).toEqual(true) // ログインアクションは不可
+
+            // 状態の反映
+            loginForm.vm.$nextTick(() => {
+              explect(onloginStub.called).toEqual(true) // resolveされた
+              const authInfo = onloginStub.args[0][0]
+              expect(authInfo.email).toEqual(loginForm.vm.email)
+              expect(authInfo.password).toEqual(loginForm.vm.password)
+              loginForm.vm.$nextTick(() => {
+                expect(loginForm.vm.error).toEqual('')
+                expect(loginForm.vm.disableLoginAction).toEqual(false)
+
+                done()
+              })
+            })
+          })
+        })
+      })
     })
   })
 })
