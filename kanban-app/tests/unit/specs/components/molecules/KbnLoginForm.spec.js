@@ -1,4 +1,4 @@
-import { shallowMount } from "@vue/test-utils"
+import { shallowMount, mount } from "@vue/test-utils"
 import KbnLoginForm from '@/components/molecules/KbnLoginForm.vue'
 
 describe('KbnLoginForm', () => {
@@ -141,7 +141,7 @@ describe('KbnLoginForm', () => {
         let onloginStub
         beforeEach(done => {
           onloginStub = sinon.stub()
-          loginForm = shallowMount(KbnLoginForm, {
+          loginForm = mount(KbnLoginForm, {
             propsData: { onlogin: onloginStub }
           })
           loginForm.setData({
