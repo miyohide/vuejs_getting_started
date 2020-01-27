@@ -18,6 +18,18 @@
         </li>
       </ul>
     </div>
+    <div class="form-item">
+      <label for="password">パスワード</label>
+      <input type="password" id="password" v-model="password" autocomplete="off" placeholder="例：xxxxxxxx" @focus="resetError">
+      <ul class="validation-errors">
+        <li v-if="!validation.password.required">パスワードが入力されていません</li>
+      </ul>
+    </div>
+    <div class="form-actions">
+      <KbnButton :disabled="disableLoginAction" @click="handleClick">ログイン</KbnButton>
+      <p v-if="progress" class="login-process">ログイン中....</p>
+      <p v-if="error" class="login-error">{{ error }}</p>
+    </div>
   </form>
 </template>
 
@@ -82,5 +94,30 @@ export default {
       return !this.valid || this.progress
     }
   },
+
+  methods: {
+    resetError () {
+      this.error = ''
+    },
+
+    handleClick (ev) {
+      if (this.disableLoginAction) {
+        return
+      }
+
+      this.progress = true
+      this.error = ''
+
+      this.$nextTick(() => {
+        this.onlogin({ email: this.email, password: this.password })
+          .catch(err => {
+            this.error = err.message
+          })
+          .then(() => {
+            this.progress = false
+          })
+      })
+    }
+  }
 }
 </script>
